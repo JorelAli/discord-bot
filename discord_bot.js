@@ -334,6 +334,7 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 bot.on("message", (msg) => customMessages(msg));
 
 function customMessages(msg) {
+	new Conversation();
 	if(msg.content === 'hi') {
 		msg.channel.sendMessage('Hey');
 	}
