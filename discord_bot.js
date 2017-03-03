@@ -1,4 +1,12 @@
 var fs = require('fs');
+var inputs = require('./inputs.js');
+
+/* Array prototypes */
+
+Array.prototype.random = function() {
+	return this[Math.floor(Math.random()*this.length)];
+}
+
 
 try {
 	var Discord = require("discord.js");
@@ -336,26 +344,13 @@ bot.on("message", (msg) => customMessages(msg));
 function customMessages(msg) {
 	if(msg.author != bot.user) {
 		//new Conversation();
-		switch(msg.content.toLowerCase()) {
-			case '😄':
-			case '😃':
-			case 'hi':
-			case 'hello':
-				msg.channel.sendMessage(["Hey", "What's up?", "How's it going?", "Hi!"].random());
-				break;
-			case ':/':
-			case 'sigh':
-			case '😦':
-				msg.channel.sendMessage("What's wrong?","Need a video to cheer you up?", "Wanna play some chess or something?");
-				break;	
-			default:
-				break;
+		var content = msg.content.toLowerCase();
+		if(inputs.greetings.includes(content)) {
+			msg.channel.sendMessage(["Hey", "What's up?", "How's it going?", "Hi!"].random());
+		} else if(inputs.negativeFeelings.includes(content)) {
+			msg.channel.sendMessage(["What's wrong?","Need a video to cheer you up?", "Wanna play some chess or something?"].random());
 		}
 	}	
-}
-
-Array.prototype.random = function() {
-	return this[Math.floor(Math.random()*this.length)];
 }
 
 //Log user status changes
