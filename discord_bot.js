@@ -336,15 +336,19 @@ bot.on("message", (msg) => customMessages(msg));
 function customMessages(msg) {
 	if(msg.author != bot.user) {
 		//new Conversation();
-		switch(msg.content) {
+		switch(msg.content.toLowerCase()) {
+			case '😄':
+			case '😃':
 			case 'hi':
+			case 'hello':
 				msg.channel.sendMessage(["Hey", "What's up?", "How's it going?", "Hi!"].random());
 				break;
-			case ':(':
-				msg.channel.sendMessage("What's wrong? Need a video to cheer you up? Wanna play some chess or something?");
+			case ':/':
+			case 'sigh':
+			case '😦':
+				msg.channel.sendMessage("What's wrong?","Need a video to cheer you up?", "Wanna play some chess or something?");
 				break;	
 			default:
-				msg.channel.sendMessage("I have no idea what you just said :(");
 				break;
 		}
 	}	
