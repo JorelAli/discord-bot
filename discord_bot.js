@@ -334,10 +334,24 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 bot.on("message", (msg) => customMessages(msg));
 
 function customMessages(msg) {
-	new Conversation();
-	if(msg.content === 'hi') {
-		msg.channel.sendMessage('Hey');
-	}
+	if(msg.author != bot.user) {
+		//new Conversation();
+		switch(msg.content) {
+			case 'hi':
+				msg.channel.sendMessage(["Hey", "What's up?", "How's it going?", "Hi!"].random());
+				break;
+			case ':(':
+				msg.channel.sendMessage("What's wrong? Need a video to cheer you up? Wanna play some chess or something?");
+				break;	
+			default:
+				msg.channel.sendMessage("I have no idea what you just said :(");
+				break;
+		}
+	}	
+}
+
+Array.prototype.random = function() {
+	return this[Math.floor(Math.random()*this.length)];
 }
 
 //Log user status changes
