@@ -345,7 +345,6 @@ bot.on("message", (msg) => customMessages(msg));
 var convo = null;
 function customMessages(msg) {
 	if(msg.author != bot.user) {
-		console.log("Said message: " + msg.content);
 		if(convo == null) {
 			convo = Conversation(msg);
 			convo.start();

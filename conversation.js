@@ -20,6 +20,16 @@ var thingEnum = {
     CHESS: 1
 };
 
+String.prototype.containsArray = function(array) {
+    for(item in array) {
+        if(this.includes(array[item])) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 function Conversation(msg) {
 
     this.conversationList = [];
@@ -77,7 +87,11 @@ function Conversation(msg) {
     };
 
     /* Suggests what to do based on the initial question "What's up?" */
-    this.response = function(message) {
+    this.response = function(message) { 
+        if(message.containsArray(inputs.terminator)) {
+            msg.channel.sendMessage("No problem. See you later :)");
+            return;
+        }
         if(message.includes("joke")) {
            var getRandomJoke = oneLinerJoke.getRandomJoke();
            msg.channel.sendMessage(getRandomJoke.body);
