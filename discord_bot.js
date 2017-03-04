@@ -351,10 +351,16 @@ function customMessages(msg) {
 			convo.start();
 			convo.ask();
 			return;
+		} else if(convo.isDead) {
+			msg.channel.sendMessage("Bye!");
+			convo = null;
+			return;
 		}
 		//Receive response
 		if(convo.awaitingConfirmation) {
-			convo.parseAnswer(msg.content);
+			if(convo.parseAnswer(msg.content)) {
+				convo = null;
+			}
 		}
 		convo.response(msg.content);
 		

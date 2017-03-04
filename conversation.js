@@ -1,5 +1,7 @@
 var outputs = require("./ouputs.js");
 var inputs = require("./inputs.js");
+var oneLinerJoke = require('one-liner-joke');
+
 Array.prototype.random = function() {
     "use strict";
 	return this[Math.floor(Math.random()*this.length)];
@@ -9,14 +11,14 @@ var natureEnum = {
     NONE: 0, 
     BORED: 1, //Feeling bored 
     LONELY: 2, //Feeling lonely
-    SAD: 3, //Feeling sad
+    SAD: 3 //Feeling sad
 };
 
 var thingEnum = {
     NONE: -1,
     VIDEO: 0,
     CHESS: 1
-}
+};
 
 function Conversation(msg) {
 
@@ -25,6 +27,7 @@ function Conversation(msg) {
     this.awaitingConfirmation = false;
     this.questionNature = natureEnum.NONE;
     this.thingNature = thingEnum.NONE;
+    this.isDead = false;
 
     this.start = function() {
         console.log("Conversation started");
@@ -58,21 +61,32 @@ function Conversation(msg) {
             console.log("Yes indicated");
             switch(questionNature) {
                 case natureEnum.BORED:
-
+                    if(thingNature == thingEnum.CHESS) {
+                        msg.channel.sendMessage("Awesome, let's go: https://www.chess.com/live");
+                        this.isDead = true;
+                        return true;
+                    }
                     break;
                 case natureEnum.LONELY:
                     break;
                 case natureEnum.SAD:
                     break;
-            
+            }
         }
+        return false;
     };
 
     /* Suggests what to do based on the initial question "What's up?" */
     this.response = function(message) {
-        if(message.includes("bored")) {
+        if(message.includes("joke")) {
+           var getRandomJoke = oneLinerJoke.getRandomJoke();
+           msg.channel.sendMessage(getRandomJoke.body);
+        }
+        else if(message.includes("bored")) {
             var thing = outputs.thingsToDo.random();
-            //thingNature = thingEnum. outputs.thingsToDo.indexOf(thing);
+            if(thing.includes('chess')) {
+                thingNature = thingEnum.CHESS;
+            }
             msg.channel.sendMessage("Do you want to " + thing + "?");
             awaitingConfirmation = true;
             questionNature = natureEnum.BORED;
