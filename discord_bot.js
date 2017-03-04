@@ -219,7 +219,9 @@ bot.on("ready", function () {
 	bot.user.setUsername("Cynthia");
 	require("./plugins.js").init();
 	console.log("type "+Config.commandPrefix+"help in Discord for a commands list.");
-	bot.user.setGame(Config.commandPrefix+"help | " + bot.guilds.array().length +" Servers"); 
+	bot.user.set
+	bot.user.setGame();
+	//bot.user.setGame(Config.commandPrefix+"help | " + bot.guilds.array().length +" Servers"); 
 });
 
 bot.on("disconnected", function () {
