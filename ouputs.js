@@ -1,3 +1,3 @@
 module.exports = {
-    greetings: ['hi', 'hello', 'hey', "How's it going?", "Nice to see you :)"],
+    greetings: ['hi', 'hello', 'hey', "Nice to see you :)"],
 }

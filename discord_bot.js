@@ -342,10 +342,30 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 });
 bot.on("message", (msg) => customMessages(msg));
 
+var convo = null;
 function customMessages(msg) {
 	if(msg.author != bot.user) {
-		convo = Conversation(msg);
+		if(convo == null) {
+			convo = Conversation(msg);
+			convo.start();
+			convo.ask();
+			return;
+		}
+		//Receive response
+		if(convo.awaitingConfirmation) {
+			convo.parseAnswer(msg.content);
+		}
+		convo.response(msg.content);
+		
 
+		
+
+
+
+		// convo.start();
+		// console.log(convo.conversationList);
+		// convo.add();
+		// console.log(convo.conversationList);
 		//convo.start();
 
 		// var content = msg.content.toLowerCase();
