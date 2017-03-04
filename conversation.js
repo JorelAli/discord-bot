@@ -14,10 +14,10 @@ var natureEnum = {
 
 function Conversation(msg) {
 
-    var conversationList = [];
+    this.conversationList = [];
     //Awaiting a yes/no answer from a question
-    var awaitingConfirmation = false;
-    var questionNature = natureEnum.NONE;
+    this.awaitingConfirmation = false;
+    this.questionNature = natureEnum.NONE;
 
     this.start = function() {
         console.log("Conversation started");
@@ -37,7 +37,18 @@ function Conversation(msg) {
     this.parseAnswer = function(message) {
         awaitingConfirmation = false;
         if(inputs.no.includes(message.toLowerCase())) {
+            console.log("No indicated");
+            switch(questionNature) {
+                case natureEnum.BORED:
 
+                    break;
+                case natureEnum.LONELY:
+                    break;
+                case natureEnum.SAD:
+                    break;
+            }
+        } else if(inputs.yes.includes(message.toLowerCase())) {
+            console.log("Yes indicated");
         }
     };
 
