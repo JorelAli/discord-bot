@@ -216,6 +216,7 @@ var bot = new Discord.Client();
 
 bot.on("ready", function () {
 	console.log("Logged in! Serving in " + bot.guilds.array().length + " servers");
+	bot.user.setUsername("Cynthia");
 	require("./plugins.js").init();
 	console.log("type "+Config.commandPrefix+"help in Discord for a commands list.");
 	bot.user.setGame(Config.commandPrefix+"help | " + bot.guilds.array().length +" Servers"); 

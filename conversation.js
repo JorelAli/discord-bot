@@ -89,10 +89,9 @@ function Conversation(msg) {
     /* Suggests what to do based on the initial question "What's up?" */
     this.response = function(message) { 
         if(message.containsArray(inputs.terminator)) {
-            msg.channel.sendMessage("No problem. See you later :)");
+            msg.channel.sendMessage(outputs.farewells.random());
             return;
-        }
-        if(message.includes("joke")) {
+        } else if(message.includes("joke")) {
            var getRandomJoke = oneLinerJoke.getRandomJoke();
            msg.channel.sendMessage(getRandomJoke.body);
         }
