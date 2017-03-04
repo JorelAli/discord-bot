@@ -1,5 +1,6 @@
 var fs = require('fs');
 var inputs = require('./inputs.js');
+var Conversation = require('./conversation.js')
 
 /* Array prototypes */
 
@@ -343,13 +344,16 @@ bot.on("message", (msg) => customMessages(msg));
 
 function customMessages(msg) {
 	if(msg.author != bot.user) {
-		//new Conversation();
-		var content = msg.content.toLowerCase();
-		if(inputs.greetings.includes(content)) {
-			msg.channel.sendMessage(["Hey", "What's up?", "How's it going?", "Hi!"].random());
-		} else if(inputs.negativeFeelings.includes(content)) {
-			msg.channel.sendMessage(["What's wrong?","Need a video to cheer you up?", "Wanna play some chess or something?"].random());
-		}
+		convo = Conversation(msg);
+
+		//convo.start();
+
+		// var content = msg.content.toLowerCase();
+		// if(inputs.greetings.includes(content)) {
+		// 	msg.channel.sendMessage(["Hey", "What's up?", "How's it going?", "Hi!"].random());
+		// } else if(inputs.negativeFeelings.includes(content)) {
+		// 	msg.channel.sendMessage(["What's wrong?","Need a video to cheer you up?", "Wanna play some chess or something?"].random());
+		// }
 	}	
 }
 
