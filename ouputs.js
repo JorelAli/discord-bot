@@ -1,3 +1,4 @@
 module.exports = {
-    greetings: ['hi', 'hello', 'hey', "Nice to see you :)"],
+    greetings: ['Hi', 'Hello', 'Hey', "Nice to see you 😃"],
+    thingsToDo: ['watch a video', 'play some chess']
 }

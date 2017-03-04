@@ -7,10 +7,16 @@ Array.prototype.random = function() {
 
 var natureEnum = {
     NONE: 0, 
-    BORED: 1, 
-    LONELY: 2, 
-    SAD: 3
+    BORED: 1, //Feeling bored 
+    LONELY: 2, //Feeling lonely
+    SAD: 3, //Feeling sad
 };
+
+var thingEnum = {
+    NONE: -1,
+    VIDEO: 0,
+    CHESS: 1
+}
 
 function Conversation(msg) {
 
@@ -18,6 +24,7 @@ function Conversation(msg) {
     //Awaiting a yes/no answer from a question
     this.awaitingConfirmation = false;
     this.questionNature = natureEnum.NONE;
+    this.thingNature = thingEnum.NONE;
 
     this.start = function() {
         console.log("Conversation started");
@@ -49,13 +56,24 @@ function Conversation(msg) {
             }
         } else if(inputs.yes.includes(message.toLowerCase())) {
             console.log("Yes indicated");
+            switch(questionNature) {
+                case natureEnum.BORED:
+
+                    break;
+                case natureEnum.LONELY:
+                    break;
+                case natureEnum.SAD:
+                    break;
+            
         }
     };
 
     /* Suggests what to do based on the initial question "What's up?" */
     this.response = function(message) {
         if(message.includes("bored")) {
-            msg.channel.sendMessage("Wanna do something fun?");
+            var thing = outputs.thingsToDo.random();
+            //thingNature = thingEnum. outputs.thingsToDo.indexOf(thing);
+            msg.channel.sendMessage("Do you want to " + thing + "?");
             awaitingConfirmation = true;
             questionNature = natureEnum.BORED;
         }
