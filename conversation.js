@@ -55,13 +55,15 @@ function Conversation(msg) {
 
     /* Interprets a yes/no answer to a question */
     this.parseAnswer = function(message) {
-        awaitingConfirmation = false;
+        
         if(inputs.no.includes(message.toLowerCase())) {
             console.log("No indicated");
             switch(questionNature) {
                 case natureEnum.BORED:
-
-                    break;
+                    msg.channel.sendMessage(outputs.farewells.random());
+                    awaitingConfirmation = false;
+                    this.isDead = true;
+                    return true;
                 case natureEnum.LONELY:
                     break;
                 case natureEnum.SAD:
@@ -74,6 +76,7 @@ function Conversation(msg) {
                     if(thingNature == thingEnum.CHESS) {
                         msg.channel.sendMessage("Awesome, let's go: https://www.chess.com/live");
                         this.isDead = true;
+                        awaitingConfirmation = false;
                         return true;
                     }
                     break;
