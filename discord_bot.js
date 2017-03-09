@@ -356,7 +356,7 @@ function customMessages(msg) {
 			}
 			return;
 		} else if(convo.isDead) {
-			msg.channel.sendMessage("Bye!");
+			console.log("Conversation ended")
 			convo = null;
 			return;
 		}

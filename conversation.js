@@ -93,6 +93,7 @@ function Conversation(msg) {
     this.response = function(message) { 
         if(message.toLowerCase().containsArray(inputs.terminator)) {
             msg.channel.sendMessage(outputs.farewells.random());
+            this.isDead = true;
             return;
         } else if(message.includes("joke")) {
            var getRandomJoke = oneLinerJoke.getRandomJoke();
