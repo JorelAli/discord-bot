@@ -91,7 +91,7 @@ function Conversation(msg) {
 
     /* Suggests what to do based on the initial question "What's up?" */
     this.response = function(message) { 
-        if(message.containsArray(inputs.terminator)) {
+        if(message.toLowerCase().containsArray(inputs.terminator)) {
             msg.channel.sendMessage(outputs.farewells.random());
             return;
         } else if(message.includes("joke")) {

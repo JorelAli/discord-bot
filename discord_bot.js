@@ -349,7 +349,7 @@ var convo = null;
 function customMessages(msg) {
 	if(msg.author != bot.user) {
 		if(convo == null) {
-			if(inputs.greetings.includes(content)) {
+			if(inputs.greetings.includes(msg.content)) {
 				convo = Conversation(msg);
 				convo.start();
 				convo.ask();
