@@ -349,9 +349,11 @@ var convo = null;
 function customMessages(msg) {
 	if(msg.author != bot.user) {
 		if(convo == null) {
-			convo = Conversation(msg);
-			convo.start();
-			convo.ask();
+			if(inputs.greetings.includes(content)) {
+				convo = Conversation(msg);
+				convo.start();
+				convo.ask();
+			}
 			return;
 		} else if(convo.isDead) {
 			msg.channel.sendMessage("Bye!");
