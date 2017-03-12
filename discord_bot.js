@@ -348,6 +348,10 @@ bot.on("message", (msg) => customMessages(msg));
 var convo = null;
 function customMessages(msg) {
 	if(msg.author != bot.user) {
+		if(inputs.commands.includes(msg.content)) {
+			console.log("command received!")
+			return;
+		}
 		if(convo == null) {
 			if(inputs.greetings.includes(msg.content)) {
 				convo = Conversation(msg);
